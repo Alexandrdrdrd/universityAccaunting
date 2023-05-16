@@ -19,7 +19,7 @@ public class Lector {
     @Column(name = "degree")
     private Degree degree;
 
-    @ManyToMany(mappedBy = "lectors", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "lectors", fetch = FetchType.EAGER)
     private Set<Department> departments;
 
     public Lector() {
@@ -58,5 +58,14 @@ public class Lector {
 
     public void setDepartments(Set<Department> departments) {
         this.departments = departments;
+    }
+
+    @Override
+    public String toString() {
+        return "Lector{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", degree=" + degree +
+                '}';
     }
 }

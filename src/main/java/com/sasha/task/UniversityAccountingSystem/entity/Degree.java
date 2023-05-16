@@ -1,9 +1,9 @@
 package com.sasha.task.UniversityAccountingSystem.entity;
 
 public enum Degree {
-    ASSISTANT("Assistant"),
+    Assistant("Assistant"),
     ASSOCIATE_PROFESSOR("Associate Professor"),
-    PROFESSOR("Professor");
+    Professor("Professor");
 
     private String displayName;
 

@@ -3,6 +3,7 @@ package com.sasha.task.UniversityAccountingSystem.entity;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity(name = "departments")
 public class Department {
@@ -14,11 +15,11 @@ public class Department {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "head_id")
     private Lector head;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "department_lector",
             joinColumns = @JoinColumn(name = "department_id"),
             inverseJoinColumns = @JoinColumn(name = "lector_id"))
@@ -70,5 +71,15 @@ public class Department {
     public void removeLector(Lector lector) {
         lectors.remove(lector);
         lector.getDepartments().remove(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", head=" + (head != null ? head.getName() : null) +
+                ", lectors=" + lectors.stream().map(Lector::getId).collect(Collectors.toList()) +
+                '}';
     }
 }
