@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sasha.task</groupId>
-	<artifactId>UniversityAccountingSystem</artifactId>
+	<artifactId>university_accounting_system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>UniversityAccountingSystem</name>
+	<name>university_accounting_system</name>
 	<description>University accounting</description>
 	<properties>
 		<java.version>11</java.version>
