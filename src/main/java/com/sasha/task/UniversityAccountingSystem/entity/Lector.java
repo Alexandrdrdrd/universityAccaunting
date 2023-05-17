@@ -1,5 +1,7 @@
 package com.sasha.task.UniversityAccountingSystem.entity;
 
+import com.sasha.task.UniversityAccountingSystem.abstract_entity.Worker;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +11,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "lectors")
-public class Lector {
+public class Lector extends Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
