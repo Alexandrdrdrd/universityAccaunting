@@ -1,19 +1,20 @@
-package com.sasha.task.UniversityAccountingSystem.services;
+package com.sasha.task.UniversityAccountingSystem.services.implementations;
 
 import com.sasha.task.UniversityAccountingSystem.entity.Degree;
 import com.sasha.task.UniversityAccountingSystem.entity.Department;
 import com.sasha.task.UniversityAccountingSystem.entity.Lector;
 import com.sasha.task.UniversityAccountingSystem.repository.DepartmentRepository;
+import com.sasha.task.UniversityAccountingSystem.services.interfaces.DepartmentServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class DepartmentService {
+public class DepartmentServiceImpl implements DepartmentServiceInterface {
     private final DepartmentRepository departmentRepository;
 
     @Autowired
-    public DepartmentService(DepartmentRepository departmentRepository) {
+    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
         this.departmentRepository = departmentRepository;
     }
 

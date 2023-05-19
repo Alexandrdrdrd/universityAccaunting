@@ -1,7 +1,8 @@
-package com.sasha.task.UniversityAccountingSystem.services;
+package com.sasha.task.UniversityAccountingSystem.services.implementations;
 
 import com.sasha.task.UniversityAccountingSystem.entity.Lector;
 import com.sasha.task.UniversityAccountingSystem.repository.LectorRepository;
+import com.sasha.task.UniversityAccountingSystem.services.interfaces.LectorServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class LectorService {
+public class LectorServiceImpl implements LectorServiceInterface {
     private final LectorRepository lectorRepository;
 
     @Autowired
-    public LectorService(LectorRepository lectorRepository) {
+    public LectorServiceImpl(LectorRepository lectorRepository) {
         this.lectorRepository = lectorRepository;
     }
 

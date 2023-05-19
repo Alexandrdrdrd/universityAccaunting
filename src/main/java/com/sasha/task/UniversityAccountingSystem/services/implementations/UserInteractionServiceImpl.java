@@ -1,19 +1,20 @@
-package com.sasha.task.UniversityAccountingSystem.services;
+package com.sasha.task.UniversityAccountingSystem.services.implementations;
 
+import com.sasha.task.UniversityAccountingSystem.services.interfaces.UserInteractionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
 
 @Service
-public class UserInteractionService {
-    private final DepartmentService departmentService;
-    private final LectorService lectorService;
+public class UserInteractionServiceImpl implements UserInteractionServiceInterface {
+    private final DepartmentServiceImpl departmentServiceImpl;
+    private final LectorServiceImpl lectorServiceImpl;
 
     @Autowired
-    public UserInteractionService(DepartmentService departmentService, LectorService lectorService) {
-        this.departmentService = departmentService;
-        this.lectorService = lectorService;
+    public UserInteractionServiceImpl(DepartmentServiceImpl departmentServiceImpl, LectorServiceImpl lectorServiceImpl) {
+        this.departmentServiceImpl = departmentServiceImpl;
+        this.lectorServiceImpl = lectorServiceImpl;
     }
 
     /**
@@ -25,7 +26,13 @@ public class UserInteractionService {
 
         boolean running = true;
         while (running) {
-            System.out.println("Enter your command (or 'exit' to quit):");
+            System.out.println("\nEnter your command (or 'exit' to quit):");
+            System.out.println("Available commands: \n Who is head of department {department_name} \n" +
+                    " Show {department_name} statistics \n " +
+                    "Show the average salary for the department {department_name} \n" +
+                    " Show count of employee for {department_name}. \n" +
+                    " Global search by {template}" );
+
             String command = scanner.nextLine();
 
             String result = executeCommand(command);
@@ -48,21 +55,21 @@ public class UserInteractionService {
     private String executeCommand(String command) {
         if (command.startsWith("Who is head of department")) {
             String departmentName = extractParameter(command);
-            return departmentService.getDepartmentHead(departmentName);
+            return departmentServiceImpl.getDepartmentHead(departmentName);
         } else if (command.startsWith("Show")) {
             if (command.contains("statistics")) {
                 String departmentName = extractParameter(command);
-                return departmentService.getDepartmentStatistics(departmentName);
+                return departmentServiceImpl.getDepartmentStatistics(departmentName);
             } else if (command.contains("average salary")) {
                 String departmentName = extractParameter(command);
-                return departmentService.getAverageSalary(departmentName);
+                return departmentServiceImpl.getAverageSalary(departmentName);
             } else if (command.contains("count of employee")) {
                 String departmentName = extractParameter(command);
-                return departmentService.getEmployeeCount(departmentName);
+                return departmentServiceImpl.getEmployeeCount(departmentName);
             }
         } else if (command.startsWith("Global search by")) {
             String template = extractParameter(command);
-            return lectorService.globalSearch(template);
+            return lectorServiceImpl.globalSearch(template);
         }
 
         return "Invalid command";
